@@ -1,0 +1,116 @@
+[
+  {
+    "id": "mermaid-quadrant",
+    "name": "Mermaid: Quadrant Chart",
+    "notation": "mermaid",
+    "code": "quadrantChart\n  title PPM (Product Portfolio Management) Analysis\n  x-axis Low Relative Market Share --> High Relative Market Share\n  y-axis Low Market Growth Rate --> High Market Growth Rate\n  quadrant-1 Stars\n  quadrant-2 Question Marks\n  quadrant-3 Cash Cows\n  quadrant-4 Dogs\n  Product A: [0.8, 0.7]\n  Product B: [0.3, 0.9]\n  Product C: [0.9, 0.2]\n  Product D: [0.2, 0.1]\n  Product E: [0.6, 0.5]"
+  },
+  {
+    "id": "mermaid-flowchart-lr",
+    "name": "Mermaid: Flowchart (Left->Right)",
+    "notation": "mermaid",
+    "code": "graph LR\n    %% Node shapes and styles\n    A[四角形] --> B(丸四角形)\n    B --> C((円))\n    C --> D{ひし形}\n    D --> E[/平行四辺形/]\n    E --> F[\\逆平行四辺形\\]\n    F --> G((データベース))\n    G --> H>非対称形]\n    H --> I{{六角形}}\n    I --> J[/台形\\]\n    J --> K[/逆台形/]\n    \n    %% Subgraph example\n    subgraph サブグラフ[\"サブグラフ\"]\n    S1[ステップ1] --> S2[ステップ2]\n    S2 --> S3[ステップ3]\n    end\n    \n    %% Different arrow types\n    L[実線矢印] --> M[ノード]\n    N[点線矢印] -.-> M\n    O[太い矢印] ==> M\n    \n    %% Bidirectional links\n    P[双方向] <--> Q[リンク]\n    \n    %% Styled nodes and links\n    R[スタイル付き] -- テキスト --> S[ノード]\n    T[色付き] --> |説明テキスト| U[ノード]\n    \n    %% Complex styling\n    V[スタイル]:::customClass --> W[ノード]\n    \n    %% Link to subgraph\n    A --> S1\n    K --> サブグラフ\n    \n    %% Class definitions\n    classDef customClass fill:#f96,stroke:#333,stroke-width:2px;\n    classDef default fill:#f9f,stroke:#333,stroke-width:1px;"
+  },
+  {
+    "id": "mermaid-sequence",
+    "name": "Mermaid: Sequence Diagram",
+    "notation": "mermaid",
+    "code": "sequenceDiagram\n    title Comprehensive Sequence Diagram Example\n    autonumber\n    %% Participants can be defined as actors or regular participants\n    actor User\n    participant Frontend\n    participant Backend\n    participant Database\n    \n    %% Activation and different arrow types\n    User->>+Frontend: Submit form\n    Frontend->>+Backend: POST /api/data\n    Backend->>+Database: INSERT INTO table\n    Database-->>-Backend: Return success\n    Backend-->>-Frontend: Return 200 OK\n    Frontend-->>-User: Show success message\n    \n    %% Notes can be placed in different positions\n    Note left of User: User initiates action\n    Note right of Database: Data is stored\n    Note over Frontend,Backend: System processes request\n    \n    %% Loop example\n    loop Every 5 minutes\n        Backend->>Database: Check for updates\n        Database-->>Backend: Return updates\n    end\n    \n    %% Alt/Else for conditional flows\n    alt Successful case\n        User->>+Frontend: Request data\n        Frontend->>+Backend: GET /api/data\n        Backend->>+Database: SELECT FROM table\n        Database-->>-Backend: Return data\n        Backend-->>-Frontend: Return data\n        Frontend-->>-User: Display data\n    else Error case\n        User->>+Frontend: Request invalid data\n        Frontend->>+Backend: GET /api/invalid\n        Backend-->>-Frontend: Return 404\n        Frontend-->>-User: Show error message\n    end\n    \n    %% Opt for optional sequences\n    opt User decides to save\n        User->>Frontend: Click save\n        Frontend->>Backend: Save data\n    end\n    \n    %% Par for parallel sequences\n    par Notification sent to admin\n        Backend->>Backend: Generate admin notification\n    and Log is created\n        Backend->>Database: Write to log\n    end\n    \n    %% Critical section\n    critical Database transaction\n        Backend->>Database: Begin transaction\n        Backend->>Database: Execute queries\n        Database-->>Backend: Commit results\n    end\n    \n    %% Break statement\n    break when system fails\n        Backend->>Frontend: Report system failure\n        Frontend->>User: Display error message\n    end"
+  },
+  {
+    "id": "mermaid-gantt",
+    "name": "Mermaid: Gantt Chart",
+    "notation": "mermaid",
+    "code": "gantt\n    dateFormat  YYYY-MM-DD\n    title Project Timeline\n    excludes    weekends\n    section Section A\n    Task 1            :a1, 2024-01-01, 30d\n    Task 2            :after a1  , 20d\n    section Critical tasks\n    Critical Task 1   :crit1, 2024-01-15, 15d"
+  },
+  {
+    "id": "mermaid-class",
+    "name": "Mermaid: Class Diagram",
+    "notation": "mermaid",
+    "code": "classDiagram\n    %% クラス定義\n    class Animal {\n        +String name\n        +int age\n        +makeSound() void\n        +move() void\n    }\n    \n    class Dog {\n        -String breed\n        +fetch() void\n        +makeSound() void\n    }\n    \n    class Cat {\n        -int lives\n        +climb() void\n        +makeSound() void\n    }\n    \n    class Bird {\n        -double wingspan\n        +fly() void\n        +makeSound() void\n    }\n    \n    %% 継承関係\n    Animal <|-- Dog : 継承\n    Animal <|-- Cat : 継承\n    Animal <|-- Bird : 継承\n    \n    %% 関連関係\n    class Person {\n        +String name\n        +int age\n        +feedAnimal(Animal) void\n    }\n    \n    Person \"1\" --> \"*\" Animal : 所有\n    \n    %% インターフェースと実装\n    class IFlyable {\n        <<interface>>\n        +fly() void\n    }\n    \n    class ISwimmable {\n        <<interface>>\n        +swim() void\n    }\n    \n    Bird ..|> IFlyable : 実装\n    Duck ..|> IFlyable : 実装\n    Duck ..|> ISwimmable : 実装\n    \n    %% 複合関係\n    class Zoo {\n        +String name\n        +String location\n        +addAnimal(Animal) void\n        +removeAnimal(Animal) void\n    }\n    \n    Zoo \"1\" o-- \"*\" Animal : 含む\n    \n    %% 集約関係\n    class AnimalShelter {\n        +String name\n        +registerAnimal(Animal) void\n    }\n    \n    AnimalShelter \"1\" *-- \"*\" Animal : 管理\n    \n    %% 依存関係\n    class Veterinarian {\n        +String name\n        +String specialization\n        +treatAnimal(Animal) void\n    }\n    \n    Veterinarian ..> Animal : 治療\n    \n    %% 列挙型\n    class AnimalType {\n        <<enumeration>>\n        MAMMAL\n        BIRD\n        REPTILE\n        AMPHIBIAN\n        FISH\n    }\n    \n    %% 抽象クラス\n    class AbstractClass {\n        <<abstract>>\n        +abstractMethod() void\n        +concreteMethod() void\n    }\n    \n    %% 静的メンバー\n    class Utility {\n        +$static() void\n        +$staticVariable String\n    }\n    \n    %% カスタムスタイル\n    classDef default fill:#f9f,stroke:#333,stroke-width:1px;\n    classDef interface fill:#bbf,stroke:#33f,stroke-width:1px;\n    classDef abstract fill:#fbf,stroke:#f33,stroke-width:1px;\n    \n    class IFlyable interface\n    class ISwimmable interface\n    class AbstractClass abstract"
+  },
+  {
+    "id": "mermaid-state",
+    "name": "Mermaid: State Transition Diagram",
+    "notation": "mermaid",
+    "code": "stateDiagram-v2\n    %% Mermaid.js State Diagram with Parallel Processing and Conditional Branching\n    direction LR\n\n    [*] --> InitialState\n    FinalState --> [*]\n\n    state \"最初の状態\" as InitialState\n    state \"次の状態\" as NextState\n    state \"最終状態\" as FinalState\n\n    InitialState --> NextState : イベントA / 処理X\n    note right of InitialState : システムの開始点です。\n    note right of FinalState : 全ての処理が完了し、システムが終了します。\n\n    %% ここに条件分岐（菱形）を追加\n    state DecisionPoint <<choice>>  %% 菱形のノードを定義\n    state \"条件Aパス\" as PathA\n    state \"条件Bパス\" as PathB\n\n    NextState --> DecisionPoint : 条件判定\n    note right of DecisionPoint : e.g. A or B\n\n    DecisionPoint --> PathA : [条件Aが真]\n    DecisionPoint --> PathB : [条件Bが真]\n\n    PathA --> FinalState : パスA完了\n    PathB --> FinalState : パスB完了\n\n    note right of PathA : 条件Aが満たされた場合の処理。\n    note left of PathB : 条件Bが満たされた場合の処理。\n\n    %% 並行処理の例 (既存のコード)\n    state ForkPoint <<fork>>\n    state JoinPoint <<join>>\n    state \"並行タスクX\" as ParallelTaskX\n    state \"並行タスクY\" as ParallelTaskY\n\n    %% 並行処理の開始と終了\n    %% ここでは例として、PathAから並行処理に入るように変更\n    PathA --> ForkPoint : 並行処理開始\n\n    ForkPoint --> ParallelTaskX\n    ForkPoint --> ParallelTaskY\n    ParallelTaskX --> JoinPoint\n    ParallelTaskY --> JoinPoint\n    JoinPoint --> FinalState\n\n    %% 並行状態の例（複合状態内での並行処理）\n    state \"並行処理複合状態\" as ParallelCompound {\n        direction TB  %% 複合状態内は上下方向\n        state fork_state <<fork>>\n        state join_state <<join>>\n        \n        %% 並行状態の定義\n        state \"並行状態1\" as Parallel1 {\n            state \"状態1-A\" as State1A\n            state \"状態1-B\" as State1B\n            State1A --> State1B\n            note right of State1A : サブタスクAの開始。\n        }\n        \n        state \"並行状態2\" as Parallel2 {\n            state \"状態2-A\" as State2A\n            state \"状態2-B\" as State2B\n            State2A --> State2B\n        }\n        \n        %% 並行処理の流れ\n        [*] --> fork_state\n        fork_state --> Parallel1\n        fork_state --> Parallel2\n        Parallel1 --> join_state\n        Parallel2 --> join_state\n        join_state --> [*]\n    }\n\n    %% 親状態の例\n    state \"親状態A\" as ParentA {\n        direction TB\n        state \"子状態A.1\" as ChildA1\n        state \"子状態A.2\" as ChildA2\n        ChildA1 --> ChildA2 : 条件1\n        ChildA2 --> ChildA1 : 条件2\n\n        [*] --> ChildA1\n        ChildA2 --> [*]\n\n    }"
+  },
+  {
+    "id": "mermaid-pie",
+    "name": "Mermaid: Pie Chart",
+    "notation": "mermaid",
+    "code": "pie title Fruits Distribution\n    \"Apples\" : 386\n    \"Bananas\" : 250\n    \"Oranges\" : 200"
+  },
+  {
+    "id": "mermaid-er",
+    "name": "Mermaid: ER Diagram",
+    "notation": "mermaid",
+    "code": "erDiagram\n    %% Entity definitions with attributes\n    CUSTOMER {\n        string id PK \"Primary key\"\n        string name\n        string email UK \"Unique key\"\n        datetime created_at\n        boolean active\n    }\n    ORDER {\n        string id PK\n        string customer_id FK\n        decimal total_amount\n        datetime order_date\n        string status\n    }\n    PRODUCT {\n        string id PK\n        string name\n        decimal price\n        int stock_quantity\n        string category\n    }\n    ORDER_ITEM {\n        string order_id FK\n        string product_id FK\n        int quantity\n        decimal unit_price\n    }\n    CATEGORY {\n        string id PK\n        string name\n        string description\n    }\n    PAYMENT {\n        string id PK\n        string order_id FK\n        decimal amount\n        string payment_method\n        datetime payment_date\n    }\n    \n    %% Relationship definitions with different cardinalities\n    CUSTOMER ||--o{ ORDER : places\n    ORDER ||--|{ ORDER_ITEM : contains\n    PRODUCT ||--o{ ORDER_ITEM : \"included in\"\n    CUSTOMER }|..|{ PAYMENT : makes\n    PRODUCT }o--|| CATEGORY : belongs\n    ORDER ||--o| PAYMENT : \"paid by\"\n    \n    %% Comment explaining diagram\n    %% This ER diagram shows a simple e-commerce data model\n    %% with customers, orders, products, and payments"
+  },
+  {
+    "id": "mermaid-git",
+    "name": "Mermaid: Git Graph",
+    "notation": "mermaid",
+    "code": "gitGraph\n   commit id: \"A0\"\n   branch feature-A\n   commit id: \"A1\"\n   commit id: \"A2\"\n   checkout main\n   commit id: \"M1\"\n   merge feature-A id: \"merge-A\"\n   branch feature-B\n   commit id: \"B1\"\n   checkout main\n   commit id: \"M2\"\n   checkout feature-B\n   commit id: \"B2\"\n   checkout main\n   merge feature-B id: \"merge-B\"\n   commit id: \"C\""
+  },
+  {
+    "id": "mermaid-user-journey",
+    "name": "Mermaid: User Journey",
+    "notation": "mermaid",
+    "code": "journey\n    title My working day\n    section Go to work\n      Make tea: 5: Me\n      Go upstairs: 3: Me\n      Do work: 1: Me, Cat\n    section Go home\n      Go downstairs: 5: Me\n      Sit down: 5: Me"
+  },
+  {
+    "id": "mermaid-mindmap",
+    "name": "Mermaid: Mind Map",
+    "notation": "mermaid",
+    "code": "mindmap\n  root((Mind Map Root))\n    Origins\n      Long history\n      Popularisation\n        British popular psychology author Tony Buzan\n    Research\n      On effectiveness<br/>and features\n      On techniques<br/>and links\n    Tools\n      Pen and paper\n      Mermaid"
+  },
+  {
+    "id": "mermaid-timeline",
+    "name": "Mermaid: Timeline",
+    "notation": "mermaid",
+    "code": "timeline\n  title History of Social Media\n  2002 : Friendster\n  2003 : LinkedIn\n  2004 : Facebook\n       : Flickr\n  2005 : YouTube\n  2006 : Twitter"
+  },
+  {
+    "id": "dot-simple",
+    "name": "DOT: Simple Graph",
+    "notation": "dot",
+    "code": "digraph G {\n  rankdir=LR;\n  A [label=\"Start\"]\n  B [label=\"End\"]\n  A -> B;\n}"
+  },
+  {
+    "id": "dot-state",
+    "name": "DOT: State Transition Diagram",
+    "notation": "dot",
+    "code": "digraph StateMachine {\n  rankdir=LR;\n  node [shape = circle];\n  S0 -> S1 [label=\"Event A\"];\n  S1 -> S2 [label=\"Event B\"];\n  S2 -> S0 [label=\"Event C\"];\n}"
+  },
+  {
+    "id": "dot-complex-flowchart",
+    "name": "DOT: Complex Flowchart",
+    "notation": "dot",
+    "code": "digraph ComplexFlowchart {\n  rankdir=TD;\n  node [shape=box, style=rounded];\n  Start [shape=ellipse];\n  End [shape=ellipse];\n  Input [label=\"データ入力\", shape=parallelogram];\n  Decision1 [label=\"条件1?\", shape=diamond];\n  Process1A [label=\"処理1A\"];\n  Start -> Input -> Decision1 -> Process1A -> End; \n}"
+  },
+  {
+    "id": "dot-network",
+    "name": "DOT: Network Diagram",
+    "notation": "dot",
+    "code": "graph Network {\n  layout=neato;\n  node [shape=box, style=filled, color=lightblue];\n  Router1 -- ServerA;\n  Router1 -- ServerB;\n  ServerA -- Database1;\n}"
+  },
+  {
+    "id": "dot-dataflow",
+    "name": "DOT: Data Flow Diagram (Simple)",
+    "notation": "dot",
+    "code": "digraph DFD {\n  rankdir=LR;\n  node [shape=box];\n  ExternalEntity [shape=rect, label=\"外部エンティティ\"];\n  Process1 [shape=circle, label=\"プロセス1\"];\n  DataStore1 [shape=record, label=\"データストアA\"];\n  ExternalEntity -> Process1 [label=\"入力データ\"];\n  Process1 -> DataStore1 [label=\"書き込み\"];\n  DataStore1 -> Process1 [label=\"読み出し\"];\n  Process1 -> ExternalEntity [label=\"出力データ\"];\n}"
+  },
+  {
+    "id": "dot-usecase",
+    "name": "DOT: Use Case Diagram",
+    "notation": "dot",
+    "code": "digraph UseCase {\n    actor User\n    node [shape=ellipse];\n    UC1 [label=\"機能Aを実行\"];\n    UC2 [label=\"機能Bを利用\"];\n    UC3 [label=\"レポートを生成\"];\n    User -> UC1;\n    User -> UC2;\n    UC2 -> UC3 [label=\"<<include>>\", style=dashed, arrowhead=open]; \n}"
+  },
+  {
+    "id": "dot-filesystem-tree",
+    "name": "DOT: File System Tree",
+    "notation": "dot",
+    "code": "digraph FileSystem {\n    node [shape=folder, style=filled, fillcolor=lightyellow];\n    edge [arrowhead=none];\n    root [label=\"/\"];\n    root -> usr;\n    root -> home;\n    root -> etc;\n    usr -> bin;\n    usr -> lib;\n    usr -> local;\n    home -> user1 [label=\"user1\", shape=house, fillcolor=lightblue];\n    home -> user2 [label=\"user2\", shape=house, fillcolor=lightblue];\n    etc -> config_file [label=\"app.conf\", shape=note, fillcolor=lightgray];\n    local -> app_binary [label=\"my_app\", shape=box, style=filled, fillcolor=lightgreen];\n}"
+  }
+]

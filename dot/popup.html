@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>dot/Mermaid viewer</title>
+  <meta name="description" content="Free online graph drawing and verification tool supporting DOT language and Mermaid notation. Simply input your code to easily create, display, and download flowcharts, sequence diagrams, Gantt charts, and more.">
+  <link rel="stylesheet" href="css/dot_viewer/base.css">
+  <link rel="stylesheet" href="css/dot_viewer/panels.css">
+  <link rel="stylesheet" href="css/dot_viewer/global_controls.css">
+  <link rel="stylesheet" href="css/dot_viewer/fullscreen_view.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="global-controls">
+    <button id="toggle-all-panels-btn" title="hide panels"></button>
+    <button id="toggle-fullscreen-btn" title="full screen"></button>
+  </div>
+
+  <div class="panels-wrapper">
+    <div class="settings-panel">
+      <div class="settings-panel-header">
+        <h2>settings</h2>
+        <button id="toggle-settings-panel-btn" title="hide settings"></button>
+      </div>
+      <div class="settings-content hidden">
+        <div>
+          <label>choose syntax:</label>
+          <input type="radio" name="notation" value="dot" id="radio-dot"> <label for="radio-dot">DOT</label>
+          <input type="radio" name="notation" value="mermaid" id="radio-mermaid" checked> <label for="radio-mermaid">Mermaid</label>
+        </div>
+        <div>
+          <label for="template-select">template:</label>
+          <select id="template-select"></select>
+        </div>
+        <div>
+          <label for="download-format-select">file type:</label>
+          <select id="download-format-select">
+            <option value="png">PNG</option>
+            <option value="svg">SVG</option>
+          </select>
+          <button id="download-btn">download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-panel">
+      <div class="code-panel-header">
+        <h2>Code</h2>
+        <div class="code-actions">
+          <button id="copy-code-btn" title="copy"></button>
+          <button id="paste-code-btn" title="paste"></button>
+          <button id="clear-code-btn" title="clear"></button>
+        </div>
+      </div>
+      <textarea id="code-input" spellcheck="false"></textarea>
+    </div>
+  </div>
+
+  <div class="output-panel">
+    <div id="graph-container">
+      <p>Please select a notation and enter valid code.</p>
+    </div>
+  </div>
+</div>
+
+<!-- External libraries -->
+<script src="js/viz/viz.js"></script>
+<script src="js/viz/full.render.js"></script>
+<script src="js/mermaid/mermaid.js"></script>
+
+<!-- Main application script -->
+<script type="module" src="js/dot_viewer/dot_viewer.js" defer></script>
+
+<section aria-labelledby="tool-description-heading">
+  <h2 id="tool-description-heading" style="position:absolute;left:-9999px;">About dot/Mermaid viewer</h2>
+  <p>With this tool, you can easily create, display, and edit various types of diagrams using DOT language and Mermaid.js notation.</p>
+  <p>This tool performs all processing locally, and your input code is not sent externally.</p>
+</section>
+<hr style="border:0;border-top:1px solid #696c6b;">
+<section aria-labelledby="tool-description-heading">
+  <p>Would you buy me a coffee?: <a href="https://ko-fi.com/yoshinag" target="_blank">https://ko-fi.com/yoshinag</a> (Please make a donation)</p>
+</section>
+
+</body>
+</html>
